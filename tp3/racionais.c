@@ -41,17 +41,17 @@ struct racional *cria_r (long int numerador, long int denominador){
 
 	struct racional *r;
 	
-	r = malloc (sizeof (struct racional));
+	r = malloc(sizeof(struct racional));
 	
-	if (!r) 
+	if (!r)
 		return NULL;
-
-    r->num = numerador;
-    r->den = denominador;
-    
-    simplifica_r (r);
-    
-    return r;
+		
+	r->num = numerador;
+	r->den = denominador;
+	
+	simplifica_r(r);
+	
+	return r;
 }
 
 void destroi_r (struct racional *r){
@@ -79,7 +79,10 @@ int denominador_r (struct racional *r, long int *den){
 
 int valido_r (struct racional *r){
 
-	if
+	if(r->den == 0)
+		return(0);
+	
+	return(1);
 }
 
 void imprime_r (struct racional *r){

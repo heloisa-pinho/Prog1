@@ -12,7 +12,8 @@ void ler_vetor(struct racional **v, int tam){
 	long int num,den;
 	
 	for (i = 0; i < tam; i++){
-	    scanf("%ld,%ld",&num,&den);
+	    scanf("%ld",&num);
+	    scanf("%ld", &den);
 	    v[i] = cria_r(num,den);
 	}
 }
@@ -25,7 +26,7 @@ void imprime_vetor(struct racional **v, int tam){
         imprime_r(v[i]);
         printf(" ");
     }
-    printf(" ");
+    printf("\n");
 }
 
 void elimina_invalido(struct racional **v, int *n){
@@ -76,7 +77,7 @@ void ordena_vetor(struct racional **v, int tam){
     }		
 }    
 
-void soma_vetor (struct racional **v,struct racional *soma, int n){
+void soma_vetor(struct racional **v,struct racional *soma, int n){
 	
     int i;
 	
@@ -102,10 +103,10 @@ int main (){
     scanf("%d",&n);
     
     v = malloc (n * sizeof(struct racional*));
-    soma = malloc (sizeof(struct racional));
+    soma = malloc (sizeof(struct racional)); 
     
     ler_vetor(v,n);
-/*    imprime_vetor(v,n);
+    imprime_vetor(v,n);
     
     elimina_invalido(v,&n);
     imprime_vetor(v,n);
@@ -115,7 +116,7 @@ int main (){
     
     soma_vetor(v, soma, n);
     printf("a soma de todos os elementos eh: ");
-    imprime_r (soma);*/
+    imprime_r (soma);
     
     free_rac(v,n);
     free (v);
