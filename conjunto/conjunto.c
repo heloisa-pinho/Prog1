@@ -12,7 +12,7 @@ struct conjunto *cria_cjt (int max){
 	    return NULL;
 	    
     c->max = max;
-    c->card = NULL;
+    c->card = 0;//null
     
     return c;
 }
@@ -23,7 +23,7 @@ struct conjunto *destroi_cjt (struct conjunto *c){
     i = 0;
     
     while(i <= c->card){
-        c->v[i] = NULL;
+        c->v[i] = 0;//null
         i++;
     }
     
@@ -35,7 +35,7 @@ struct conjunto *destroi_cjt (struct conjunto *c){
 
 int vazio_cjt (struct conjunto *c){
 
-    if (c->card == NULL)
+    if (c->card == 0)
         return 1;
     
     return 0;
@@ -109,7 +109,7 @@ int contido_cjt (struct conjunto *c1, struct conjunto *c2){
         return 0;
         
     while (i <= c2->card) {
-        if (! pertence(c2,c1->v[i]))
+        if (! pertence_cjt(c2,c1->v[i]))
             return 0;
         i++;
     }
@@ -117,13 +117,13 @@ int contido_cjt (struct conjunto *c1, struct conjunto *c2){
     return 1;
 }
         
-int sao_iguais_cjt (struct conjunto *c1, struct conjunto *c2){
+/*int sao_iguais_cjt (struct conjunto *c1, struct conjunto *c2){
 
 struct conjunto *diferenca_cjt (struct conjunto *c1, struct conjunto *c2)          
         
 struct conjunto *interseccao_cjt (struct conjunto *c1, struct conjunto *c2)        
         
-struct conjunto *uniao_cjt (struct conjunto *c1, struct conjunto *c2)        
+struct conjunto *uniao_cjt (struct conjunto *c1, struct conjunto *c2)    */    
         
 struct conjunto *copia_cjt (struct conjunto *c){
 
@@ -133,16 +133,16 @@ struct conjunto *copia_cjt (struct conjunto *c){
     copia = cria_cjt(c->card);
     copia->card = c->card;
     
-    for (i = 0,i++,i<=c->card){
-        copia->v[i] = c->v[i]
+    for (i = 0;i++;i=c->card){
+        copia->v[i] = c->v[i];
     }
     
     return copia;
 } 
            
-struct conjunto *cria_subcjt_cjt (struct conjunto *c, int n)
+/*struct conjunto *cria_subcjt_cjt (struct conjunto *c, int n)
 
-void imprime_cjt (struct conjunto *c)
+void imprime_cjt (struct conjunto *c)*/
 
 void inicia_iterador_cjt (struct conjunto *c){
 
@@ -151,15 +151,22 @@ void inicia_iterador_cjt (struct conjunto *c){
 
 int incrementa_iterador_cjt (struct conjunto *c, int *ret_iterador){
 
+	if (c->ptr <= c->card){
+	    ret_iterador = c->v;
+	    c->ptr = c->ptr+1;
+	    return 1;
+	}
+	
+	return 0;
+}
 
+/*Remove o ultimo elemento*/
+int retira_um_elemento_cjt (struct conjunto *c){
 
-
-
-
-
-
-
-
-
-
-  
+    int elem_rem;
+    
+    elem_rem = c->v[c->card];
+    c->card = c->card - 1;
+    
+    return elem_rem;
+}
